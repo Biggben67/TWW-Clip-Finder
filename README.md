@@ -1,16 +1,16 @@
 # TWW Sim Portable
 
-Simulation-backed seam-clip tools for the Japanese GameCube release of **The
-Legend of Zelda: The Wind Waker**. The package includes the Python simulation,
-the C++ movement worker, and three Windows GUIs. It does **not** include a game
-image or Link's model and animation assets.
+Seam Clip tools for The Wind Waker (JP)
+- Bomb & Pot Push **finder**
+- Moving Bomb & Pot Push movement **solver**
+- Slash clip movement **solver**
 
 ## Requirements
 
-- Windows x64. The `runtime/` folder supplies Python and Tk; no system Python or
+- Windows x64. The `runtime/` folder provides Python and Tk. No system Python or
   compiler is needed to run the included launchers.
-- Your own unmodified Japanese Wind Waker `.iso` (`GZLJ01` or `GZLJ11`).
-- Zelda TAS Edition Dolphin with its control pipe enabled for live-state and
+- Your own Japanese Wind Waker `.iso` (`GZLJ01`).
+- [Zelda TAS Edition Dolphin]([url](https://github.com/Biggben67/Dolphin-Zelda-TAS-Edition-/releases/latest)) with its control pipe enabled for live-state and
   recorded-route searches. Dolphin and its games are not bundled.
 
 Keep the folder together when moving it. On first launch, choose your ISO in
