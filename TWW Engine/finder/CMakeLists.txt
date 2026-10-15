@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.20)
+project(tww_slash_route CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+if(NOT TWW_ENGINE_SOURCE)
+  message(FATAL_ERROR "Set TWW_ENGINE_SOURCE to the cloned tww_engine directory")
+endif()
+set(TWW_ENGINE_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory("${TWW_ENGINE_SOURCE}" engine)
+find_package(Threads REQUIRED)
+add_executable(tww_slash_worker worker.cpp "${TWW_ENGINE_SOURCE}/tests/framework/json.cpp")
+target_include_directories(tww_slash_worker PRIVATE "${TWW_ENGINE_SOURCE}/tests")
+target_link_libraries(tww_slash_worker PRIVATE tww_engine_port Threads::Threads)
+
+add_executable(tww_camera_collision_tests EXCLUDE_FROM_ALL camera_collision_test.cpp)
+target_link_libraries(tww_camera_collision_tests PRIVATE tww_engine_port Threads::Threads)
+

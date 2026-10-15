@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy to dolphin.local.json (gitignored) and edit for your machine. Every key is optional and overrides a computed default; env vars (TWW_ISOS_DIR, DOLPHIN_EXE, TWWGZ_SLATE) override this file. See harness/dolphin_env.py.",
+
+  "isos_dir": "C:/Users/you/Documents/ISOs",
+
+  "tww_extract_dir": "C:/path/to/extracted/disc (OPTIONAL: dir containing files/; if unset, tools read game assets like LkAnm.arc straight out of <isos_dir>/twwgz.iso in memory -- no copyrighted data committed either way)",
+
+
+  "dolphin_exe": "C:/path/to/Dolphin-Zelda-TAS-Edition/Binary/x64/Release/Dolphin.exe (default: the Release build in the sibling Dolphin-Zelda-TAS-Edition checkout)",
+
+  "slate": "C:/path/to/your/superswim_coldstart_slate.s10 (default: fixtures/savestate/superswim_coldstart_slate.s10)"
+}

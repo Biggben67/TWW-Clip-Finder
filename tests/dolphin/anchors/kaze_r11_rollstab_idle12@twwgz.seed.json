@@ -1,0 +1,18 @@
+{
+ "link_x": 9107.6416015625,
+ "link_y": -6534.32861328125,
+ "link_z": 1005.9912109375,
+ "facing": 33328,
+ "travel_angle": 33328,
+ "shape_angle_y": 33328,
+ "csangle": 29883,
+ "potential_speed": 0.0,
+ "true_speed": 0.0,
+ "target_angle": 27503,
+ "msd": 0.0,
+ "link_state": 4,
+ "anim_frame": 30.800010681152344,
+ "max_normal_speed": 17.0,
+ "mEquipItem": 259,
+ "proc_raw": 4
+}

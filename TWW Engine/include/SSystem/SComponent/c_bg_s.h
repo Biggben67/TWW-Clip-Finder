@@ -1,0 +1,74 @@
+// Generated from the zeldaret/tww decomp. Do not hand-edit.
+// c_bg_s.h - cBgS_ChkElm and cBgS, the registry of collision objects (c_bg_s.h:8-13, 15-32,
+// 36-58, 60-65, 70-74).
+
+#ifndef TWW_PORT_C_BG_S_H
+#define TWW_PORT_C_BG_S_H
+
+#include "SSystem/SComponent/c_bg_s_poly_info.h"
+#include "dolphin/types.h"
+
+class fopAc_ac_c;
+class cBgS_ShdwDraw;
+class cBgS_LinChk;
+class cBgS_GndChk;
+class cM3dGPla;
+struct cXyz;
+
+class cBgS_ChkElm {
+public:
+    /* 0x00 */ cBgW* m_bgw_base_ptr;
+    /* 0x04 */ u32 m_flags;
+    /* 0x08 */ u32 m_actor_id;
+    /* 0x0C */ fopAc_ac_c* m_actor_ptr;
+    /* 0x10 vtable */
+
+public:
+    cBgS_ChkElm() { Init(); }
+    void Init();
+    void Release();
+
+    virtual ~cBgS_ChkElm() {}
+    virtual void Regist2(cBgW*, fpc_ProcID, void*);
+
+    bool ChkUsed() const { return (m_flags & 1); }
+};  // Size: 0x14
+
+class cBgW;
+class cBgS {
+public:
+    /* 0x0000 */ cBgS_ChkElm m_chk_element[256];
+    /* 0x1400 vtable */
+
+public:
+    cBgS() {}
+
+    cM3dGPla* GetTriPla(cBgS_PolyInfo& polyInfo) const {
+        return GetTriPla(polyInfo.GetBgIndex(), polyInfo.GetPolyIndex());
+    }
+    s32 GetTriGrp(cBgS_PolyInfo& polyInfo) const {
+        return GetTriGrp(polyInfo.GetBgIndex(), polyInfo.GetPolyIndex());
+    }
+    fopAc_ac_c* GetActorPointer(cBgS_PolyInfo& i_poly) const {
+        return GetActorPointer(i_poly.GetBgIndex());
+    }
+
+    bool Regist(cBgW*, fpc_ProcID, void*);
+    bool Release(cBgW*);
+    bool LineCross(cBgS_LinChk*);
+    f32 GroundCross(cBgS_GndChk*);
+
+    fopAc_ac_c* GetActorPointer(int) const;
+    cBgW* GetBgWPointer(cBgS_PolyInfo&) const;
+    bool ChkPolySafe(cBgS_PolyInfo&);
+    s32 GetTriGrp(int, int) const;
+    s32 GetGrpToRoomId(int, int) const;
+    cM3dGPla* GetTriPla(int, int) const;
+
+    virtual ~cBgS() {}
+    virtual void Ct();
+    virtual void Dt();
+    virtual void Move();
+};  // Size: 0x1404
+
+#endif

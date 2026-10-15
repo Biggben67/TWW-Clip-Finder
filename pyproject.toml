@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tww_sim"
+version = "0.2.0"
+description = "Bit-exact offline simulation of TWW (GZLJ01/JP) player physics (core/swim/land) + route planners"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [{ name = "Dereck Miller" }]
+dependencies = []  # pure standard library (ctypes-backed f32); no third-party deps
+
+[project.urls]
+Repository = "https://github.com/DMiller0090/tww_sim"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+# The importable library is the `tww_sim` package (core/swim/land). The live-Dolphin harness/,
+# tests/, viz/ and archive/ are dev tooling, run from a checkout, not shipped on install.
+include = ["tww_sim*"]
+
+[tool.setuptools.package-data]
+"tww_sim.core" = ["tables/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Collect only the offline test_*.py modules. The live-Dolphin scripts now live in
+# tests/dolphin/ (run_tests.py, verify_state.py, spotcheck_*.py) and the golden_* harness
+# modules are NOT test_*.py, so pytest does not collect them -- but skip tests/dolphin/
+# entirely so a future rename in there can't silently pull dolphin_mem into collection.
+python_files = ["test_*.py"]
+norecursedirs = ["dolphin"]
+addopts = "-m 'not slow'"
+markers = [
+    "slow: deselect by default; anything over the 1 s per-test budget -- search/optimizer/camera-pool characterization that re-derives a measurement rather than gating a function. Run it with `pytest -m slow`. The budget is enforced by tests/conftest.py.",
+]

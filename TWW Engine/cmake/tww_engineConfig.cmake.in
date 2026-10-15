@@ -1,0 +1,16 @@
+@PACKAGE_INIT@
+
+# The archive was built without contraction; this refuses a consumer compiler with no known
+# no-contract flag, since the consumer's code computes the initial conditions it hands to Session.
+if(NOT MSVC AND NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  message(FATAL_ERROR
+    "tww_engine: unknown compiler '${CMAKE_CXX_COMPILER_ID}'. This library's arithmetic depends "
+    "on the compiler not contracting multiply-adds, and so does any code that computes a "
+    "position and hands it to tww_engine::Session. There is no portable way to ask for that. "
+    "Teach tww_engineConfig.cmake the flag for your compiler, then verify it with the emitted "
+    "machine code rather than trusting the flag.")
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/tww_engineTargets.cmake")
+
+check_required_components(tww_engine)

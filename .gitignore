@@ -1,0 +1,32 @@
+# Local game extracts, search output, movie/state captures, and GUI settings.
+/_generated/
+/fixtures/
+/tests/golden/
+/tests/benchmark/results.jsonl
+/tests/dolphin/anchors/*.dtm*
+/dolphin.local.json
+
+# Never commit source disc images or extracted art/collision if copied elsewhere.
+*.iso
+*.gcm
+*.rvz
+*.wbfs
+*.arc
+*.szs
+*.bdl
+*.bmd
+*.bck
+*.dzb
+*.dzs
+*.sav
+*.dtm
+
+# Local build/test products.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+/build/
+/dist/
+/TWW Engine/build/
