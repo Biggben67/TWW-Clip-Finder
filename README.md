@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TWW Sim Portable
 
 Simulation-backed seam-clip tools for the Japanese GameCube release of **The
@@ -76,3 +77,7 @@ The Python simulation and bundled TWW engine carry MIT licenses in `LICENSE`
 and `TWW Engine/LICENSE`; see `TWW Engine/NOTICE` for decompilation provenance.
 The bundled Python runtime has its own notices in `runtime/LICENSE.txt`. This
 project is unofficial and is not affiliated with Nintendo.
+=======
+# TWW-Clip-Finder
+An offline bit exact simulation environment, using TrogWW's TWW Sim and Engine repos.
+>>>>>>> origin/main
