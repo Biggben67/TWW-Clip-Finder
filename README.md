@@ -1,4 +1,4 @@
-# TWW Sim Portable
+# TWW Clip Finder
 
 Seam Clip tools for The Wind Waker (JP)
 - Bomb & Pot Push **finder**
