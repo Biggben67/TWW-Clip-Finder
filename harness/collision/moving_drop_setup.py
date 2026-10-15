@@ -21,7 +21,7 @@ from harness.collision.offline_moving_drop import (
     _try_drop,
     _moving_candidate_rank,
 )
-from harness.rollstab.rest import dtm_stick
+from harness.dtm.stick import dtm_stick
 from tww_sim.core import drop_release as dr
 from tww_sim.core import fp
 from tww_sim.land.constants import SUBJECTIVITY

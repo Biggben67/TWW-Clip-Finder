@@ -40,6 +40,7 @@ if _tb not in sys.path:
 
 from tww_sim.land.land import LandState
 from tww_sim.land.plan_land import stick_for_bearing
+from harness.dtm.stick import dtm_stick
 from harness.rollstab import geometry as G
 
 CALIB_PATH = os.path.join(_rb, '_generated', 'rollstab_calib.json')
@@ -48,16 +49,6 @@ NCRUISE = 18
 REST_NOOPS = 2      # leading run_dtm rows the game never ran (savestate-anchored DTM alignment):
 #                     live d_frame holds the REST value through sim rows [seed, 0] and first advances
 #                     at row 1 (verified on idle13: d = 30.8, 30.8, 31.9, 33.0(entry) for rows 0..2).
-
-# dtm_make's getMainStickValue calibration: every authored DTM delivers 255 as 254 and 0 as 1.
-# The undelivered raw byte cost a 60-tread stick-angle error on the (73,255) arc (found live).
-_DTM_CAL = {255: 254, 0: 1}
-
-
-def dtm_stick(stk):
-    """Map a planned stick to the bytes dtm_make will actually deliver. Plan/sim ONLY these."""
-    return (_DTM_CAL.get(stk[0], stk[0]), _DTM_CAL.get(stk[1], stk[1]))
-
 
 def sticks_of(anchor, seam=None):
     """(seed, straight, aim) for the verification/approach stream. `straight` aims at the anchor

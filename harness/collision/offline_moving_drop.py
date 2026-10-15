@@ -21,7 +21,7 @@ from harness.collision.find_drop_push_candidate import (
 from harness.collision.gap_search import first_f32_acch_clip
 from harness.collision.room_collision import load_live_room_collision, load_room_collision
 from harness.dtm.writer import build_dtm_from_sticks, install_savestate_companions
-from harness.rollstab.rest import dtm_stick
+from harness.dtm.stick import dtm_stick
 from tww_sim.core import drop_release as dr
 from tww_sim.core import fp
 from tww_sim.core.anim import fk

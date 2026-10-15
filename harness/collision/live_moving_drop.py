@@ -22,7 +22,7 @@ from harness.collision.room_collision import load_live_room_collision
 from harness.dolphin_control import DolphinControl
 from harness.dtm.writer import build_dtm_from_sticks, install_savestate_companions
 from harness.rollstab.live_slash import open_dolphin, read_state
-from harness.rollstab.rest import dtm_stick
+from harness.dtm.stick import dtm_stick
 from tww_sim.land.plan_land import stick_for_bearing, world_angle_s16
 
 
