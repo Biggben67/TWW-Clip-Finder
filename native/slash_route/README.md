@@ -1,36 +1,34 @@
 # Native Slash Route Finder
 
-Launch `launch_native_slash_route_gui.cmd` from TWW Sim. Select the seam, StateSaves
+Launch `Slash Clip Solver.cmd` from TWW Sim. Select the seam, StateSaves
 folder, base and final slots (5 and 10 by default), JP ISO, and Walking/Rolling/Both.
 The final slot's `.dtm` must contain the user's recorded route.
 
 Leave the original movie active and paused in read-only playback. Do not stop
-playback: older Dolphin builds cannot attach a saved movie from a stopped session.
-Capture loads a private copy of the base slot paired with the final slot's full
-DTM. It advances by TWW's game-frame counter (including lag VIs), checks the final
+playback: Capture loads a copy of the base slot paired with the final slot's full
+DTM. It advances by TWW's game frame counter (including lag VIs), checks the final
 pose/speed/action bit-for-bit against the final slot, and restores the user's
 paused state even on failure. No original slots or movies are changed and no
 injected-input fallback or Dolphin restart is used.
 
 The Python application reuses the existing Dolphin capture, controller decoding,
-settings, seam selection, and full-source DTM patching. Candidate movement, sword
+settings, seam selection, and full source DTM patching. Candidate movement, sword
 animation, foot IK, camera updates, and CrrPos run in a persistent Release C++ worker,
 batched across up to 16 CPU threads. Each CPU lane reuses its collision world.
-No Dolphin reloads occur during candidate search. Settings are retained on close;
-comma-separated XYZ coordinates can be pasted into any seam coordinate field.
-
+No Dolphin reloads occur during candidate search. Settings are saved on close.
+Comma separated XYZ coordinates can be pasted into any seam coordinate field (From the collision viewer script).
+ 
 Before mutating inputs, native replay must reproduce the captured approach's
 XYZ, speed, facing, action, camera yaw, camera eye and center, and lower-body
 animation clocks/blend ratios as identical f32 values. Local refinement also
-validates the recorded slash entry; replanning replaces it. Neither requires
-reproducing the failed slash's downstream clank/rebound. Raw movie polls must
+validates the recorded slash entry. Raw movie polls must
 match the captured game-controller samples at their measured timestamps.
 The finder rejects a drifting
 import instead of applying a fitted coordinate offset. Acceptance requires an
 actual native sword transition, uncorrected crossing, and three following frames
 remaining behind a crossed wall. Exported movies are simulation candidates, not
-live-verified results. An accepted route is replayed again on one CPU lane before
-export; the full original movie and matching base savestate are preserved.
+live verified results. An accepted route is replayed again on one CPU lane before
+export. The full original movie and matching base savestate are preserved.
 
 The search first refines the recorded route, then tests coherent alternative
 camera paths, segmented walking approaches, target-launch recipes, roll launch
