@@ -93,6 +93,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     config = args.cache_dir.parent / "portable_iso.json"
     try:
+        runtime = ROOT / "runtime"
+        if (runtime / "python.exe").is_file() and not (runtime / "DLLs" / "_tkinter.pyd").is_file():
+            raise RuntimeError(
+                "Portable Python runtime is incomplete: runtime/DLLs/_tkinter.pyd is missing. "
+                "Download a fresh ZIP containing the native .pyd modules."
+            )
         iso = _select_iso(args.iso, config).resolve()
         ensure_animation_cache(iso, args.cache_dir)
         if load_selected_iso(config) != str(iso):

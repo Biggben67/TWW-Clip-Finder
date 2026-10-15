@@ -20,6 +20,12 @@ Later launches reuse that cache unless the selected ISO changes. You can set
 `TWW_ISO` to the ISO's absolute path to skip the dialog. The chosen path is saved
 only in `_generated/portable_iso.json` and is prefilled in the finders.
 
+If a ZIP download reports a missing `_tkinter` module, check that
+`runtime/DLLs/_tkinter.pyd` is present. An older package omitted the bundled
+Python `.pyd` modules; download a new ZIP after the packaging fix. Windows may
+also warn about unsigned executables. Verify the download source and review the
+exact security warning; do not disable Defender or add a blanket exclusion.
+
 ## Finders
 
 | Launcher | Purpose |

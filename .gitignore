@@ -23,7 +23,8 @@
 
 # Local build/test products.
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
 .pytest_cache/
 .mypy_cache/
 *.egg-info/

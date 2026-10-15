@@ -12,6 +12,15 @@ def test_bootstrap_rejects_non_japanese_disc(tmp_path):
         bootstrap.ensure_animation_cache(iso, tmp_path / "anim")
 
 
+def test_bootstrap_reports_incomplete_portable_runtime(tmp_path, monkeypatch, capsys):
+    runtime = tmp_path / "runtime"
+    runtime.mkdir()
+    (runtime / "python.exe").write_bytes(b"")
+    monkeypatch.setattr(bootstrap, "ROOT", tmp_path)
+    assert bootstrap.main(["--iso", str(tmp_path / "missing.iso")]) == 1
+    assert "runtime/DLLs/_tkinter.pyd is missing" in capsys.readouterr().err
+
+
 def test_bootstrap_extracts_once_and_keeps_iso_private(tmp_path, monkeypatch):
     from harness.anim import parse_bck, parse_bmd
 
